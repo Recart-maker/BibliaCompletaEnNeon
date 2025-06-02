@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblia Reina Valera 1960</title>
+  <div class="devocional">
+  <h2 class="subtitulo">🌟 Devocional del Día</h2>
+  <div id="devocionalTexto">Cargando devocional...</div>
+  <button onclick="generarDevocional()">🔄 Nuevo Devocional</button>
+</div>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1 class="titulo">📖 Biblia Reina Valera 1960</h1>
+
+  <div class="busqueda">
+    <label for="versiculoInput">Buscar versículo:</label>
+    <input type="text" id="versiculoInput" placeholder="Ejemplo: Juan 3:16, Salmo 23:1">
+    <button onclick="buscarVersiculo()">🔍 Buscar</button>
+   
+
+  </div>
+
+  <div class="selector">
+    <label for="libroSelect">Selecciona un libro:</label>
+    <select id="libroSelect" onchange="cargarCapitulos()">
+      <option value="">-- Selecciona un libro --</option>
+    </select>
+
+    <label for="capituloSelect">Selecciona un capítulo:</label>
+    <select id="capituloSelect" onchange="mostrarVersiculos()">
+      <option value="">-- Selecciona un capítulo --</option>
+    </select>
+  </div>
+
+  <div id="resultado"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
