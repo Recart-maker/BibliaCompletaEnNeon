@@ -88,5 +88,44 @@ window.onload = () => {
   generarDevocional();
 };
 
+function buscarTema() {
+  const palabra = document.getElementById("buscadorTema").value.trim().toLowerCase();
+  const contenedor = document.getElementById("resultadosTema");
+  contenedor.innerHTML = '';
+
+  if (!palabra) {
+    contenedor.innerHTML = '<p style="color: red;">⚠️ Ingresa una palabra para buscar.</p>';
+    return;
+  }
+
+  let encontrados = [];
+
+  for (let libro in biblia) {
+    for (let capitulo in biblia[libro]) {
+      for (let versiculo in biblia[libro][capitulo]) {
+        const texto = biblia[libro][capitulo][versiculo].toLowerCase();
+        if (texto.includes(palabra)) {
+          encontrados.push({
+            ref: `${libro} ${capitulo}:${versiculo}`,
+            texto: biblia[libro][capitulo][versiculo]
+          });
+        }
+      }
+    }
+  }
+
+  if (encontrados.length === 0) {
+    contenedor.innerHTML = `<p style="color:red;">❌ No se encontraron resultados para "${palabra}".</p>`;
+    return;
+  }
+
+  contenedor.innerHTML = `<p>🔎 Se encontraron <strong>${encontrados.length}</strong> resultados para "<strong>${palabra}</strong>":</p>`;
+  encontrados.forEach(v => {
+    const p = document.createElement("p");
+    p.className = "versiculo";
+    p.textContent = `${v.ref} — ${v.texto}`;
+    contenedor.appendChild(p);
+  });
+}
 
 
